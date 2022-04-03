@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { Exception } from './error';
+import { Exception } from './exception';
 
 export const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
   if (err instanceof Exception) {
