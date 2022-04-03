@@ -2,7 +2,7 @@
 
 
 var helper = {
-    if_cond: (v1, op, v2, options) => {
+    if_cond: function (v1: string, op: string, v2: string, options: any) {
         switch (op) {
             case '==':
                 return (v1 == v2) ? options.fn(this) : options.inverse(this);
@@ -28,8 +28,8 @@ var helper = {
                 return options.inverse(this);
         }
     },
-    shortText: (text, n) => {
-        return text.substring(0, n-1);
+    shortText: (text: string, n: number) => {
+        return text.substring(0, n - 1);
     }
 };
 

@@ -8,8 +8,8 @@ const host = process.env.HOST || 'localhost';
 const port = process.env.PORT || '7777';
 const rocket = emoji.get('rocket');
 
-const startServer = async () => {
-    const app = await createServer();
+const startServer = () => {
+    const app = createServer();
     const server = http.createServer(app).listen({ host, port }, () => {
         const addressInfo = server.address() as AddressInfo;
         console.log(`Server started at http://${addressInfo.address}:${addressInfo.port} ${rocket}`);
