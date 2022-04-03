@@ -1,16 +1,11 @@
 import { Request, Response, NextFunction } from 'express';
-import { ErrorCode } from './code';
-import { HttpException } from './exception';
-import { ErrorModel } from './model';
+import { Exception } from './error';
 
 export const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
-  // console.log('Error handling middleware called.');
-  // console.log('Path:', req.path);
-  // console.error('Error occured:', err);
-  if (err instanceof HttpException) {
-    res.status(err.status).send(err);
+  if (err instanceof Exception) {
+    res.status(err.status).json({ code: err.status, message: err.message });
   } else {
     // For unhandled errors.
-    res.status(500).send({ code: ErrorCode.UnknownError, status: 500 } as ErrorModel);
+    res.status(500).json({ code: 500, message: 'Unhandled error' });
   }
 }
